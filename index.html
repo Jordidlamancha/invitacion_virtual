@@ -337,20 +337,33 @@
         background-color: #dc3545;
         color: white;
       }
+      button.clicked {
+        transform: scale(0.95);
+        transition: transform 0.1s;
+      }
 
       /* Mensaje emergente */
       #mensajeEmergente {
         position: fixed;
-        bottom: 100px;
+        bottom: 350px;
         left: 50%;
         transform: translateX(-50%);
-        background-color: #ffc107;
-        color: #333;
+        background-color: rgba(
+          255,
+          193,
+          7,
+          0.3
+        ); /* amarillo con transparencia */
+        color: #000000;
         padding: 1rem 2rem;
-        border-radius: 5px;
+        border-radius: 12px;
         font-weight: bold;
         display: none;
         z-index: 9999;
+        backdrop-filter: blur(10px); /* desenfoque elegante */
+        -webkit-backdrop-filter: blur(10px); /* compatibilidad con Safari */
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2); /* sombra suave */
+        border: 1px solid rgba(255, 255, 255, 0.3); /* borde tenue */
       }
       .envelope.abierto {
         --envelope-transform: rotateY(180deg);
@@ -376,7 +389,8 @@
           </div>
 
           <div class="address">
-            <p><span>Para:</span> <span>Invitado</span></p>
+            <p><span>Para:</span> <span id="nombreInvitado">Invitado</span></p>
+
             <p><span>De:</span> <span>El Tio Turco</span></p>
           </div>
         </div>
@@ -393,10 +407,12 @@
               class="custom-image"
             />
 
-            <p>
-              Eres invitado a un Agazajo y socialización con demas amigos y
-              compañeros, para celebrar que dos de nosotros lo han logrado y,
-              celebrar en camaraderismo y amistad.
+            <p></p>
+            <p id="mensajeCarta">
+              <span id="nombreCarta">Invitado</span>,Eres invitado/a a un
+              Agazajo y socialización con demas amigos y compañeros, para
+              celebrar que dos de nosotros lo han logrado y, celebrar en
+              camaraderismo y amistad.
             </p>
             <div class="buttons">
               <button class="btn-yes" onclick="asistire()">ASISTIRÉ</button>
@@ -464,6 +480,29 @@
     <script>
       function abrirSobre(elemento) {
         elemento.classList.toggle("abierto");
+      }
+    </script>
+    <script>
+      // Función para obtener el valor de un parámetro en la URL
+      function obtenerParametro(nombre) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(nombre);
+      }
+
+      const nombre = obtenerParametro("nombre");
+
+      if (nombre) {
+        // Para el encabezado (por ejemplo, "Para: Juan")
+        const elementoNombre = document.getElementById("nombreInvitado");
+        if (elementoNombre) {
+          elementoNombre.textContent = nombre;
+        }
+
+        // Para el cuerpo de la carta (por ejemplo, "Juan, eres cordialmente invitado...")
+        const nombreEnCarta = document.getElementById("nombreCarta");
+        if (nombreEnCarta) {
+          nombreEnCarta.textContent = nombre;
+        }
       }
     </script>
   </body>
