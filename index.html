@@ -1,26 +1,38 @@
 <!DOCTYPE html>
+
 <!-- Declaración del tipo de documento HTML5 -->
+
 <html lang="en">
   <!-- Elemento raíz del documento, especifica idioma inglés -->
+
   <head>
     <!-- Encabezado del documento (metadatos) -->
+
     <meta charset="UTF-8" />
+
     <!-- Especifica la codificación de caracteres UTF-8 -->
+
     <title>Invitación Agazajo 🎉</title>
+
     <!-- Título de la página que aparece en la pestaña del navegador -->
 
     <meta name="google-adsense-account" content="ca-pub-4704501585981299" />
+
     <!-- Metaetiqueta para Google AdSense (publicidad) -->
   </head>
+
   <body>
     <!-- Cuerpo del documento (contenido visible) -->
 
     <!-- Estilos CSS para el sobre y la carta -->
+
     <style>
       /* Importa la fuente Quicksand de Google Fonts */
+
       @import url(https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap);
 
       /* Reset básico de estilos para todos los elementos */
+
       *,
       ::before,
       ::after {
@@ -28,359 +40,545 @@
       }
 
       /* Estilos para el cuerpo de la página */
+
       body {
         font-family: "Quicksand", sans-serif; /* Fuente principal */
+
         background: linear-gradient(
           to bottom right,
+
           #ffecec,
           #fff5f5,
           #ffebeb
         ); /* Fondo con gradiente */
+
         color: #333; /* Color de texto principal */
+
         display: flex; /* Usa flexbox para centrar contenido */
+
         justify-content: center; /* Centra horizontalmente */
+
         align-items: center; /* Centra verticalmente */
+
         min-height: 100vh; /* Altura mínima de toda la ventana */
+
         margin: 0; /* Elimina márgenes por defecto */
+
         padding: 1rem; /* Pequeño padding alrededor */
+
         margin-top: 50px; /* Margen superior */
+
         overflow: hidden; /* Oculta el scroll */
+
         -webkit-tap-highlight-color: transparent; /* Elimina el resaltado al tocar en móviles */
       }
 
       /* Estilos principales para el sobre */
+
       .envelope {
         --duration: 1000ms; /* Duración de las animaciones */
 
         /* Variables para la sombra */
+
         --shadow-width: calc(var(--envelope-width) * 0.85);
+
         --shadow-blur: 15px;
 
         /* Variables para dimensiones y colores del sobre */
+
         --envelope-width: 300px; /*Ancho de la base del sobre*/
+
         --envelope-height: 175px; /*Altura de la base del sobre*/
+
         --envelope-clr-bg: #8f141b; /*Color posterior del sobre*/
+
         --envelope-clr-bg-side: #8f141b; /*Color de los lados del sobre*/
+
         --envelope-clr-bg-bottom: #c24e46; /*Color parte inferior del sobre*/
+
         --envelope-clr-bg-top: #bc1b23; /*Color superior del sobre*/
+
         --envelope-clr-txt: #fff; /*Color de la carta del sobre*/
 
         /* Variables para transformaciones al hacer hover */
+
         --envelope-transform-hover: rotateY(180deg);
+
         --evelope-rotate-delay: calc(var(--duration) / 1);
+
         --evelope-rotate-delay-hover: 0ms;
 
         /* Variables para la carta */
+
         --letter-clr-bg: #fff;
+
         --letter-clr-text: #c0392b;
+
         --letter-font-size: 1rem;
+
         --letter-delay: 0ms;
+
         --letter-delay-hover: calc(var(--duration) * 1.25);
 
         --letter-height: calc(var(--envelope-height) - 2rem);
+
         --letter-height-hover: calc(var(--envelope-height) * 2.05);
 
         /* Variables para la solapa del sobre */
+
         --fold-rotate: rotateX(0deg);
+
         --fold-zindex-hover: 0;
+
         --fold-rotate-hover: rotateX(180deg);
+
         --fold-delay: calc(var(--duration) / 2);
+
         --fold-delay-hover: calc(var(--duration) * 0.75);
 
         /* Variables para elementos decorativos */
+
         --front-font-size: 1rem;
+
         --snowman-width: 50px;
+
         --bells-width: 30px;
 
         /* Posicionamiento y estilo del sobre */
+
         position: relative;
+
         height: var(--envelope-height);
+
         width: var(--envelope-width);
+
         perspective: 1000px; /* Define perspectiva para efectos 3D */
+
         cursor: pointer; /* Cambia el cursor al pasar sobre el sobre */
       }
 
       /* Media query para pantallas más grandes (responsive design) */
+
       @media (min-width: 720px) {
         .envelope {
           --envelope-width: 600px;
+
           --envelope-height: 350px;
+
           --letter-font-size: 1.6rem;
+
           --snowman-width: 130px;
+
           --bells-width: 60px;
+
           --front-font-size: 1.25rem;
         }
       }
 
       /* Estilo para la sombra del sobre */
+
       .envelope::after {
         content: "";
+
         position: absolute;
+
         top: 110%;
+
         left: 50%;
+
         width: var(--shadow-width);
+
         height: 40px;
+
         transition: var(--duration) ease-in-out;
+
         transition-delay: var(--evelope-rotate-delay);
+
         transform: var(--shadow-transform);
+
         translate: -50% 0;
+
         border-radius: 50%;
+
         background: rgba(56, 6, 6, 0.4);
+
         filter: blur(var(--shadow-blur));
       }
 
       /* Efectos al pasar el mouse sobre el sobre */
+
       .envelope:hover {
         --envelope-transform: var(--envelope-transform-hover, 0deg);
+
         --evelope-rotate-delay: var(--evelope-rotate-delay-hover);
+
         --shadow-transform: rotateY(180deg);
+
         --fold-rotate: var(--fold-rotate-hover);
+
         --fold-delay: var(--fold-delay-hover);
+
         --fold-zindex: var(--fold-zindex-hover);
+
         --letter-height: var(--letter-height-hover);
+
         --letter-delay: var(--letter-delay-hover);
       }
 
       /* Contenedor interno del sobre (para efectos 3D) */
+
       .envelope-inner {
         position: relative;
+
         width: 100%;
+
         height: 100%;
+
         transition: var(--duration) ease-in-out;
+
         transition-delay: var(--evelope-rotate-delay);
+
         transform-style: preserve-3d; /* Mantiene los hijos en espacio 3D */
+
         transform: var(--envelope-transform);
+
         display: grid;
       }
 
       /* Estilos para las caras del sobre (frente y dorso) */
+
       .envelope-front,
       .envelope-back {
         position: relative;
+
         grid-area: 1/1;
+
         width: 100%;
+
         height: 100%;
+
         background-color: var(--envelope-clr-bg);
+
         -webkit-backface-visibility: hidden;
+
         backface-visibility: hidden; /* Oculta la parte trasera cuando se gira */
+
         perspective: 1000px;
+
         isolation: isolate;
       }
 
       /* Estilos específicos para el frente del sobre */
+
       .envelope-front {
         color: var(--envelope-clr-txt);
+
         display: grid;
+
         place-content: center;
       }
 
       /* Estilo para el sello postal */
+
       .envelope-front .postage-stamp {
         position: absolute;
+
         top: 1em;
+
         right: 0.5em;
+
         width: 15%;
       }
 
       /* Estilo para la dirección en el frente */
+
       .envelope-front .address {
         text-align: left;
+
         font-size: var(--front-font-size);
       }
 
       /* Estilos para partes específicas de la dirección */
+
       .envelope-front .address > p > span:first-child {
         font-family: system-ui;
+
         font-weight: 200;
       }
+
       .envelope-front .address > p > span:last-of-type {
         font-weight: 800;
       }
 
       /* Estilo para el dorso del sobre (inicialmente girado) */
+
       .envelope-back {
         transform: rotateY(180deg);
       }
 
       /* Efecto de doblez en el dorso */
+
       .envelope-back::after {
         content: "";
+
         position: absolute;
+
         inset: 0;
+
         z-index: 3;
+
         background-image: conic-gradient(
           transparent 60deg,
+
           var(--envelope-clr-bg-side) 60deg 120deg,
+
           var(--envelope-clr-bg-bottom) 120deg 240deg,
+
           var(--envelope-clr-bg-side) 240deg 300deg,
+
           transparent 300deg
         );
       }
 
       /* Estilo para la solapa superior del sobre */
+
       .envelope-back .top-fold {
         position: absolute;
+
         inset: 0;
+
         z-index: var(--fold-zindex, 10);
+
         background-color: var(--envelope-clr-bg-top);
+
         clip-path: polygon(0% 0%, 50% 55%, 100% 0%);
+
         transform: var(--fold-rotate);
+
         transform-origin: top;
+
         transition: var(--duration) ease-in-out;
+
         transition-delay: var(--fold-delay);
       }
 
       /* Estilos para la carta dentro del sobre */
+
       .letter {
         position: absolute;
+
         bottom: 5px;
+
         left: 50%;
+
         width: 90%;
+
         height: var(--letter-height);
+
         font-size: var(--letter-font-size);
+
         transform: translateX(-50%);
+
         background: var(--letter-clr-bg);
+
         z-index: 2;
+
         padding: 2em 3em;
+
         display: flex;
+
         flex-direction: column;
+
         gap: 1rem;
+
         align-items: center;
+
         text-align: center;
+
         transition: var(--duration) ease-in-out;
+
         transition-delay: var(--letter-delay);
+
         overflow: hidden;
       }
 
       /* Estilos para elementos SVG dentro de la carta */
+
       .letter > svg.snowman {
         width: var(--snowman-width);
       }
+
       .letter svg.bells {
         width: var(--bells-width);
+
         color: orange;
       }
 
       /* Estilos para el texto de la carta */
+
       .letter p {
         margin: 0;
+
         font-weight: bold;
+
         width: 32ch;
+
         color: var(--letter-clr-text);
+
         text-align: justify; /* Texto justificado */
+
         text-justify: inter-word; /* Mejor justificación entre palabras */
+
         hyphens: auto; /* Permite división de palabras con guiones */
       }
 
       /* Estilos para imágenes personalizadas */
+
       .custom-image {
         width: 150px;
+
         height: 100px;
+
         object-fit: contain; /* Mantiene relación de aspecto */
       }
+
       .custom-image2 {
         width: 150px;
+
         height: 150px;
+
         object-fit: contain;
       }
 
       /* Estilo para texto resaltado */
+
       .highlight {
         display: block;
+
         margin-top: 10px;
+
         font-size: 1.8rem;
+
         font-weight: bold;
       }
 
       /* Estilo para el sello postal (alternativo) */
+
       .postage-stamp {
         position: absolute;
+
         top: 1em;
+
         left: 26em;
+
         width: 25%;
+
         height: auto;
       }
+
       .postage-stamp img {
         width: 150px;
       }
 
       .buttons {
         opacity: 0;
+
         transition: opacity 0.5s ease;
+
         display: flex;
+
         gap: 1rem;
+
         margin-top: 1rem;
+
         z-index: 10;
+
         pointer-events: none; /* desactivado por defecto */
       }
 
       /* Mostrar botones solo cuando el sobre esté abierto */
+
       .envelope:hover .buttons {
         opacity: 1;
+
         pointer-events: auto; /* permite clics cuando visibles */
       }
 
       button {
         padding: 0.5rem 1.5rem;
+
         font-size: 1rem;
+
         border: none;
+
         border-radius: 5px;
+
         cursor: pointer;
       }
 
       .btn-yes {
         background-color: #28a745;
+
         color: white;
       }
 
       .btn-no {
         background-color: #dc3545;
+
         color: white;
-      }
-      button.clicked {
-        transform: scale(0.95);
-        transition: transform 0.1s;
       }
 
       /* Mensaje emergente */
+
       #mensajeEmergente {
         position: fixed;
+
         bottom: 350px;
+
         left: 50%;
+
         transform: translateX(-50%);
-        background-color: rgba(
-          255,
-          193,
-          7,
-          0.3
-        ); /* amarillo con transparencia */
-        color: #000000;
+
+        background-color: #ffc107;
+
+        color: #333;
+
         padding: 1rem 2rem;
-        border-radius: 12px;
+
+        border-radius: 5px;
+
         font-weight: bold;
+
         display: none;
+
         z-index: 9999;
-        backdrop-filter: blur(10px); /* desenfoque elegante */
-        -webkit-backdrop-filter: blur(10px); /* compatibilidad con Safari */
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2); /* sombra suave */
-        border: 1px solid rgba(255, 255, 255, 0.3); /* borde tenue */
       }
+
       .envelope.abierto {
         --envelope-transform: rotateY(180deg);
+
         --evelope-rotate-delay: 0ms;
+
         --shadow-transform: rotateY(180deg);
+
         --fold-rotate: rotateX(180deg);
+
         --fold-delay: calc(var(--duration) * 0.75);
+
         --fold-zindex: 0;
+
         --letter-height: calc(var(--envelope-height) * 2.05);
+
         --letter-delay: calc(var(--duration) * 1.25);
       }
     </style>
 
     <!-- Estructura HTML del sobre interactivo -->
+
     <div class="envelope" onclick="abrirSobre(this)">
       <div class="envelope-inner">
         <!-- Frente del sobre -->
+
         <div class="envelope-front">
           <div class="postage-stamp">
             <img
@@ -396,10 +594,12 @@
         </div>
 
         <!-- Dorso del sobre (contiene la carta) -->
+
         <div class="envelope-back">
           <div class="top-fold"></div>
 
           <!-- Carta que se revela -->
+
           <div class="letter">
             <img
               src="https://www.usco.edu.co/imagen-institucional/logo/universidad-surcolombiana-v.png"
@@ -407,15 +607,16 @@
               class="custom-image"
             />
 
-            <p></p>
             <p id="mensajeCarta">
-              <span id="nombreCarta">Invitado</span>,Eres invitado/a a un
-              Agazajo y socialización con demas amigos y compañeros, para
-              celebrar que dos de nosotros lo han logrado y, celebrar en
-              camaraderismo y amistad.
+              <span id="nombreCarta">Invitado</span>, Eres invitado a un Agazajo
+              y socialización con demas amigos y compañeros, para celebrar que
+              dos de nosotros lo han logrado y, celebrar en camaraderismo y
+              amistad.
             </p>
+
             <div class="buttons">
               <button class="btn-yes" onclick="asistire()">ASISTIRÉ</button>
+
               <button class="btn-no" onclick="noAsistire()">NO ASISTIRÉ</button>
             </div>
 
@@ -428,11 +629,13 @@
         </div>
       </div>
     </div>
+
     <div id="mensajeEmergente" class="mensaje-oculto">
       Lamentamos que no puedas asistir, será para la próxima
     </div>
 
     <!-- Script de Google AdSense -->
+
     <script
       async
       src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4704501585981299"
@@ -440,48 +643,31 @@
     ></script>
 
     <!-- Script para deshabilitar funciones del navegador -->
+
     <script>
       // Previene el menú contextual (clic derecho)
+
       document.addEventListener("contextmenu", function (e) {
         e.preventDefault();
       });
 
       // Previene acceso a herramientas de desarrollo
+
       document.addEventListener("keydown", function (e) {
         if (e.key === "F12") {
           e.preventDefault();
         }
+
         if (e.ctrlKey && e.shiftKey && e.key === "I") {
           e.preventDefault();
         }
+
         if (e.ctrlKey && e.key === "u") {
           e.preventDefault();
         }
       });
     </script>
-    <script>
-      function asistire() {
-        const numero = "573222699513";
-        const mensaje = encodeURIComponent(
-          "Pienso asistir, ¿a dónde transfiero los $20.000 de la comida y la cerveza?"
-        );
-        const url = `https://wa.me/${numero}?text=${mensaje}`;
-        window.open(url, "_blank");
-      }
 
-      function noAsistire() {
-        const mensaje = document.getElementById("mensajeEmergente");
-        mensaje.style.display = "block";
-        setTimeout(() => {
-          mensaje.style.display = "none";
-        }, 4000); // Mostrar por 4 segundos
-      }
-    </script>
-    <script>
-      function abrirSobre(elemento) {
-        elemento.classList.toggle("abierto");
-      }
-    </script>
     <script>
       // Función para obtener el valor de un parámetro en la URL
       function obtenerParametro(nombre) {
@@ -490,7 +676,6 @@
       }
 
       const nombre = obtenerParametro("nombre");
-
       if (nombre) {
         // Para el encabezado (por ejemplo, "Para: Juan")
         const elementoNombre = document.getElementById("nombreInvitado");
@@ -499,10 +684,40 @@
         }
 
         // Para el cuerpo de la carta (por ejemplo, "Juan, eres cordialmente invitado...")
+
         const nombreEnCarta = document.getElementById("nombreCarta");
+
         if (nombreEnCarta) {
           nombreEnCarta.textContent = nombre;
         }
+      }
+
+      function asistire() {
+        const numero = "573222699513";
+
+        const mensaje = encodeURIComponent(
+          "Pienso asistir, ¿a dónde transfiero los $20.000 de la comida y la cerveza?"
+        );
+
+        const url = `https://wa.me/${numero}?text=${mensaje}`;
+
+        window.open(url, "_blank");
+      }
+
+      function noAsistire() {
+        const mensaje = document.getElementById("mensajeEmergente");
+
+        mensaje.style.display = "block";
+
+        setTimeout(() => {
+          mensaje.style.display = "none";
+        }, 4000); // Mostrar por 4 segundos
+      }
+    </script>
+
+    <script>
+      function abrirSobre(elemento) {
+        elemento.classList.toggle("abierto");
       }
     </script>
   </body>
