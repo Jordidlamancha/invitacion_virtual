@@ -122,7 +122,7 @@
 
         --letter-height: calc(var(--envelope-height) - 2rem);
 
-        --letter-height-hover: calc(var(--envelope-height) * 2.05);
+        --letter-height-hover: calc(var(--envelope-height) * 2.9);
 
         /* Variables para la solapa del sobre */
 
@@ -533,7 +533,7 @@
       #mensajeEmergente {
         position: fixed;
 
-        bottom: 350px;
+        bottom: 670px;
 
         left: 50%;
 
@@ -608,10 +608,22 @@
             />
 
             <p id="mensajeCarta">
-              <span id="nombreCarta">Invitado</span>, Eres invitado a un Agazajo
-              y socialización con demas amigos y compañeros, para celebrar que
-              dos de nosotros lo han logrado y, celebrar en camaraderismo y
-              amistad.
+              <span id="nombreCarta">Invitado</span>, me complace invitarle al
+              agasajo en compañía de familiares y amigos, con motivo de la
+              obtención de mi título profesional como <strong>Físico</strong>,
+              otorgado por la <strong>Universidad Surcolombiana</strong>,
+              adscrita a la
+              <strong>Facultad de Ciencias Exactas y Naturales</strong>.<br />
+
+              La celebración se llevará a cabo el día
+              <strong>domingo 1 de junio de 2025</strong>, a las
+              <strong>2:00 p.m.</strong>, en la
+              <strong>Finca Villa de los Campos</strong>, ubicada en la
+              <strong>vereda El Triunfo</strong>.<br />
+
+              Si desea llegar con anticipación para disfrutar del ambiente, la
+              música y la piscina, le recomiendo traer su
+              <strong>chingue</strong>.
             </p>
 
             <div class="buttons">
@@ -684,9 +696,7 @@
         }
 
         // Para el cuerpo de la carta (por ejemplo, "Juan, eres cordialmente invitado...")
-
         const nombreEnCarta = document.getElementById("nombreCarta");
-
         if (nombreEnCarta) {
           nombreEnCarta.textContent = nombre;
         }
@@ -694,19 +704,19 @@
 
       function asistire() {
         const numero = "573222699513";
-
+        const linkUbicacion = "https://maps.app.goo.gl/UYYy4qAZreYuUdnB8";
         const mensaje = encodeURIComponent(
-          "Pienso asistir, ¿a dónde transfiero los $20.000 de la comida y la cerveza?"
+          `${
+            nombre || "Un invitado"
+          } piensa asistir al agasajo. Ubicación: ${linkUbicacion}`
         );
 
         const url = `https://wa.me/${numero}?text=${mensaje}`;
-
         window.open(url, "_blank");
       }
 
       function noAsistire() {
         const mensaje = document.getElementById("mensajeEmergente");
-
         mensaje.style.display = "block";
 
         setTimeout(() => {
